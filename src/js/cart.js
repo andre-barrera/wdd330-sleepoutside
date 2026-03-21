@@ -15,7 +15,6 @@ document.querySelector(".product-list").addEventListener("click", (e) => {
 
 function cartItemTemplate(item) {
   return `<li class="cart-card divider">
-    <!-- ✅ X button in corner -->
     <span class="remove-item" data-id="${item.Id}">❌</span>
 
     <a href="#" class="cart-card__image">
