@@ -7,14 +7,17 @@ function renderCartContents() {
 }
 
 document.querySelector(".product-list").addEventListener("click", (e) => {
-  if (e.target.classList.contains("remove-btn")) {
+  if (e.target.classList.contains("remove-item")) {
     const id = e.target.dataset.id;
     removeFromCart(id);
   }
 });
 
 function cartItemTemplate(item) {
-  const newItem = `<li class="cart-card divider">
+  return `<li class="cart-card divider">
+    <!-- ✅ X button in corner -->
+    <span class="remove-item" data-id="${item.Id}">❌</span>
+
     <a href="#" class="cart-card__image">
       <img src="${item.Image}" alt="${item.Name}" />
     </a>
@@ -24,13 +27,7 @@ function cartItemTemplate(item) {
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
     <p class="cart-card__quantity">qty: 1</p>
     <p class="cart-card__price">$${item.FinalPrice}</p>
-    
-    <button class="remove-btn" data-id="${item.Id}">
-      Remove
-    </button>
   </li>`;
-
-  return newItem;
 }
 
 import { setLocalStorage } from "./utils.mjs";
