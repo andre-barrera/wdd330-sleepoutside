@@ -48,7 +48,7 @@ function createProductMarkup(product) {
 
       <img 
         class="divider"
-        src="${product.Image}"
+        src="${import.meta.env.VITE_SERVER_URL}${product.Image}"
         alt="${product.NameWithoutBrand}">
 
       <p class="product-card__price">$${product.FinalPrice}</p>
