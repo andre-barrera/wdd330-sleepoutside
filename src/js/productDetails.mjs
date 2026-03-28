@@ -4,7 +4,7 @@ export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
     this.dataSource = dataSource;
-    this.product = {};
+    this.product = null;
   }
 
   async init() {
@@ -48,7 +48,7 @@ function createProductMarkup(product) {
 
       <img 
         class="divider"
-        src="${product.Images.PrimaryExtraLarge}"
+        src="${product.Image}"
         alt="${product.NameWithoutBrand}">
 
       <p class="product-card__price">$${product.FinalPrice}</p>
