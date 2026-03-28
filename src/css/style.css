@@ -94,6 +94,17 @@ p {
   margin-top: -1.7em;
 }
 
+ /* category logos | under hero */
+ .product-categories {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+ }
+
+ .product-categories a {
+  width: 10%;
+ }
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
