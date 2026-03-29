@@ -15,7 +15,6 @@ export default class ProductDetails {
     // display product on the page
     this.displayProduct();
 
-    // attach event listener after the HTML exists
     const button = document.getElementById("addToCart");
     button.addEventListener("click", () => this.addProductToCart());
   }
@@ -37,8 +36,6 @@ export default class ProductDetails {
   }
 }
 
-
-// Template function that builds the product HTML
 function createProductMarkup(product) {
   return `
     <section class="product-detail">
@@ -48,12 +45,12 @@ function createProductMarkup(product) {
 
       <img 
         class="divider"
-        src="${product.Image}"
+        src="${product.Images.PrimaryLarge}"
         alt="${product.NameWithoutBrand}">
 
       <p class="product-card__price">$${product.FinalPrice}</p>
 
-      <p class="product__color">${product.Colors[0].ColorName}</p>
+      <p class="product__color"> ${product.Colors?.[0]?.ColorName || "N/A"}</p>
 
       <p class="product__description">
         ${product.DescriptionHtmlSimple}
