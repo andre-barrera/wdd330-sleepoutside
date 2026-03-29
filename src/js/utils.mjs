@@ -1,9 +1,6 @@
-// wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
@@ -43,4 +40,32 @@ export function renderListWithTemplate(
 
   const htmlStrings = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.innerHTML = template;
+
+  if (callback) {
+    callback(data);
+  }
+}
+
+export async function loadTemplate(path) {
+  const response = await fetch(path);
+  const html = await response.text();
+  return html;
+}
+
+export async function loadHeaderFooter() {
+  // load templates
+  const header = await loadTemplate("/partials/header.html");
+  const footer = await loadTemplate("/partials/footer.html");
+
+  // get elements
+  const headerElement = qs("#main-header");
+  const footerElement = qs("#main-footer");
+
+  // render
+  renderWithTemplate(header, headerElement);
+  renderWithTemplate(footer, footerElement);
 }
