@@ -43,20 +43,29 @@ export default class ProductList {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.searchMode = false; // ✅ NEW: supports search
   }
 
-async init() {
-  const list = await this.dataSource.getData(this.category);
-  this.renderList(list);
-}
+  async init() {
+    let list = [];
+
+    // ✅ Decide whether to search or load by category
+    if (this.searchMode) {
+      list = await this.dataSource.searchProducts(this.category);
+    } else {
+      list = await this.dataSource.getData(this.category);
+    }
+
+    // ✅ Handle empty results
+    if (!list || list.length === 0) {
+      this.listElement.innerHTML = "<p>No products found.</p>";
+      return;
+    }
+
+    this.renderList(list);
+  }
 
   renderList(list) {
-    // const htmlStrings = list.map(productCardTemplate);
-    // this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
-
     renderListWithTemplate(productCardTemplate, this.listElement, list);
-
   }
-
 }
-

@@ -1,22 +1,50 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="../js/checkout.js" type="module"></script>
   </head>
 
   <body>
     <header class="divider" id="main-header"></header>
+
     <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
-      </section>
+      <h2>Checkout</h2>
+
+      <div class="checkout-grid">
+  
+        <form id="checkout-form">
+          <h3>Customer Info</h3>
+
+            <input name="fname" placeholder="First Name" required />
+            <input name="lname" placeholder="Last Name" required />
+            <input name="street" placeholder="Street Address" required />
+            <input name="city" placeholder="City" required />
+            <input name="state" placeholder="State" required />
+            <input name="zip" placeholder="Zip Code" required pattern="[0-9]{5}" title="Zip code must be 5 digits" />
+
+            <h3>Payment</h3>
+
+            <input name="cardNumber" placeholder="Card Number" required pattern="[0-9]{16}" title="Card number must be 16 digits" inputmode="numeric" />
+            <input name="expiration" placeholder="MM/YY" required pattern="[0-9]{2}/[0-9]{2}" title="Format must be MM/YY" />
+            <input name="code" placeholder="CVV" required pattern="[0-9]{3}" title="CVV must be 3 digits" inputmode="numeric" />
+
+            <button type="submit">Place Order</button>
+          </form>
+
+        <section id="order-summary">
+          <h3>Order Summary</h3>
+          <p>Subtotal: <span id="subtotal"></span></p>
+          <p>Tax: <span id="tax"></span></p>
+          <p>Shipping: <span id="shipping"></span></p>
+          <p><strong>Total: <span id="total"></span></strong></p>
+        </section>
+
+      </div>
     </main>
 
     <footer id="main-footer"></footer>
