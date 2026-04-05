@@ -351,3 +351,120 @@ footer {
   color: gray;
   font-size: 0.9rem;
 }
+
+/* Checkout Button */
+.checkout-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2rem 0;
+}
+
+.checkout-btn {
+  background-color: #f0a868;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background-color: #d98f4c;
+  transform: scale(1.05);
+}
+
+.checkout-btn:active {
+  transform: scale(0.98);
+}
+
+/* Checkout Layout */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Form + Summary Layout */
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+/* Form Styling */
+#checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+#checkout-form h3 {
+  margin-top: 1rem;
+  color: #333;
+}
+
+#checkout-form input {
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+#checkout-form input:focus {
+  outline: none;
+  border-color: #f0a868;
+  box-shadow: 0 0 5px rgba(240, 168, 104, 0.5);
+}
+
+.checkout-btn {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.8rem 1.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background-color: var(--tertiary-color); /* darker hover */
+  transform: scale(1.05);
+}
+
+.checkout-btn:active {
+  transform: scale(0.98);
+}
+
+/* Order Summary */
+#order-summary {
+  background: #fff3e6;
+  padding: 1.5rem;
+  border-radius: 10px;
+  height: fit-content;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#order-summary h3 {
+  margin-bottom: 1rem;
+}
+
+#order-summary p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+#order-summary strong {
+  font-size: 1.2rem;
+}
