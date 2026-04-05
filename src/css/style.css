@@ -468,3 +468,49 @@ main {
 #order-summary strong {
   font-size: 1.2rem;
 }
+
+/* SEARCH BAR */
+#search-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: auto;
+}
+
+/* Input */
+#search-form input {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.2s ease;
+  width: 180px;
+}
+
+#search-form input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(240, 168, 104, 0.5);
+}
+
+/* Button */
+#search-form button {
+  padding: 0.45rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+#search-form button:hover {
+  background-color: var(--tertiary-color);
+  transform: scale(1.05);
+}
+
+header {
+  align-items: center;
+}
