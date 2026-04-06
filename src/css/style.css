@@ -510,7 +510,7 @@ main {
   background-color: var(--tertiary-color);
   transform: scale(1.05);
 }
-
+ /* Header */
 header {
   align-items: center;
 }
