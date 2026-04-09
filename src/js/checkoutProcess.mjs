@@ -96,8 +96,8 @@ export default class CheckoutProcess {
 
     formJSON.orderDate = new Date();
     formJSON.orderTotal = this.orderTotal;
-    formJSON.orderTax = this.tax;
-    formJSON.orderShipping = this.shipping;
+    formJSON.tax = this.tax;
+    formJSON.shipping = this.shipping;
     formJSON.items = packageItems(this.list);
 
     return formJSON;

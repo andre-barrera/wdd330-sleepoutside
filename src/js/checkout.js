@@ -14,6 +14,7 @@ document.forms["checkout"].addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const payload = await checkout.checkout();
+  console.log("Payload being sent:", payload);
   const response = await services.checkout(payload);
   console.log(response);
 });
