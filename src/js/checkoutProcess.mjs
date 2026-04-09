@@ -1,7 +1,29 @@
 import {
-  setLocalStorage,
   getLocalStorage
 } from "./utils.mjs";
+
+// takes a form element and returns an object where the key is the "name" of the form input.
+function formDataToJSON(formElement) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
+}
+
+// takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
+function packageItems(items) {
+  const itemList = items.map((item) => ({
+    id: item.Id,
+    price: item.FinalPrice,
+    name: item.Name,
+    quantity: 1,
+  }));
+  return itemList;
+}
 
 export default class CheckoutProcess {
   constructor(key, outputSelector) {
@@ -66,4 +88,18 @@ export default class CheckoutProcess {
       orderTotalElement.textContent = `$${this.orderTotal.toFixed(2)}`;
     }
   }
-}
+
+  async checkout() {
+    const formClass = document.forms["checkout"]
+
+    const formJSON = formDataToJSON(formClass)
+
+    formJSON.orderDate = new Date();
+    formJSON.orderTotal = this.orderTotal;
+    formJSON.orderTax = this.tax;
+    formJSON.orderShipping = this.shipping;
+    formJSON.items = packageItems(this.list);
+
+    return formJSON;
+  }
+};
