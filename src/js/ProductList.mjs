@@ -56,7 +56,6 @@ export default class ProductList {
 
     // apply use new utility function instead of the commented code above
     renderListWithTemplate(productCardTemplate, this.listElement, list);
-
   }
 };
 
