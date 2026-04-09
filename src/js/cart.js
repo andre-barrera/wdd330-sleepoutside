@@ -2,11 +2,9 @@ import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
 
-function hideShowLink() {
+function hideShowLink(itemList) {
   // hide "Checkout" link if order count < 0
-  const cartItems = getLocalStorage("so-cart");
-
-  const itemNum = cartItems.length;
+  const itemNum = itemList.length;
 
   const checkoutLink = document.getElementById("checkout");
   
@@ -23,6 +21,8 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  // hide link if cart is empty
+  hideShowLink(cartItems);
 }
 
 document.querySelector(".product-list").addEventListener("click", (e) => {
