@@ -11,10 +11,11 @@ const services = new ExternalServices();
 
 // Listening for submit on the form (recommended)
 document.forms["checkout"].addEventListener("submit", async (event) => {
-  event.preventDefault();
+    event.preventDefault();
 
-  const payload = await checkout.checkout();
-  console.log("Payload being sent:", payload);
-  const response = await services.checkout(payload);
-  console.log(response);
+    const payload = await checkout.checkout();
+    const response = await services.checkout(payload);
+    // some minor confirmation logic
+    alert(`Order placed! Your order ID is ${response.orderId}`);
+
 });
