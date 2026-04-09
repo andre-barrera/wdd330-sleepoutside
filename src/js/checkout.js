@@ -3,5 +3,5 @@ import CheckoutProcess from "./checkoutProcess.mjs";
 
 loadHeaderFooter();
 
-const checkout = new CheckoutProcess("so-cart", "#order-summary");
+const checkout = new CheckoutProcess("so-cart", "checkout-summary");
 checkout.init();

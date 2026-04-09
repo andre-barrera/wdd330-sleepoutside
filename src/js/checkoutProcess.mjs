@@ -51,7 +51,7 @@ export default class CheckoutProcess {
     const orderTotalElement = document.querySelector(`${this.outputSelector} #orderTotal`);
 
     if (subTotalElement) {
-      subTotalElement.textContent = `$${this.itemTotal.toFixed(2)};`
+      subTotalElement.textContent = `$${this.itemTotal.toFixed(2)}`;
     }
 
     if (taxElement) {
