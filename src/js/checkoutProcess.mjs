@@ -15,7 +15,7 @@ export default class CheckoutProcess {
   }
 
   init() {
-    this.list = getLocalStorage(this.key) || [];
+    this.list = getLocalStorage(this.key);
     this.calculateItemSubTotal()
     this.calculateOrderTotal();
   }
