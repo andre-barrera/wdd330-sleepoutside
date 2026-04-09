@@ -180,6 +180,20 @@ button {
 }
 
 /* Styles for checkout */
+.checkout-link {
+  display: inline-block;
+  background: var(--secondary-color);
+  color: #fff;
+  padding: 8px 16px;
+  margin: 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.checkout-link:hover {
+  opacity: 0.8;
+}
+
 .checkout-form {
   padding: 0.5em;
 }
