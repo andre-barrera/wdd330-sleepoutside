@@ -3,49 +3,67 @@ import {
   getLocalStorage
 } from "./utils.mjs";
 
-function getSubtotal(list) {
-  return list.reduce((subtotal, product) =>
-    subtotal + product.FinalPrice, 0)
-};
+export default class CheckoutProcess {
+  constructor(key, outputSelector) {
+    this.key = key;
+    this.outputSelector = outputSelector;
+    this.list = [];
+    this.itemTotal = 0;
+    this.shipping = 0;
+    this.tax = 0;
+    this.orderTotal = 0;
+  }
 
-function calculateShipping(itemCount) {
-  if (itemCount <= 0) return 0;
-  return 10 + (itemCount - 1) * 2;
+  init() {
+    this.list = getLocalStorage(this.key) || [];
+    this.calculateItemSubTotal()
+    this.calculateOrderTotal();
+  }
+
+  calculateItemSubTotal() {
+    // calculate and display the total dollar amount of the items in the cart, and the number of items.
+    this.itemTotal =  this.list.reduce((subtotal, product) =>
+    subtotal + product.FinalPrice, 0);
+  }
+
+  calculateOrderTotal() {
+    // calculate the tax and shipping amounts. Add those to the cart total to figure out the order total
+    this.tax = (this.itemTotal * 0.06)
+
+    const itemCount = this.list.length;
+    if (itemCount <= 0) {
+      this.shipping = 0;
+    } else {
+      this.shipping = 10 + (itemCount - 1) * 2;
+    }
+
+    this.orderTotal = this.itemTotal + this.tax + this.shipping;
+
+    // display the totals.
+    this.displayOrderTotals();
+  }
+
+  displayOrderTotals() {
+    // once the totals are all calculated display them in the order summary page
+    const subTotalElement = document.querySelector(`${this.outputSelector} #num-items`);
+    const taxElement = document.querySelector(`${this.outputSelector} #tax`);
+    const shippingCostElement = document.querySelector(`${this.outputSelector} #shipping`);
+    const orderTotalElement = document.querySelector(`${this.outputSelector} #orderTotal`);
+
+    if (subTotalElement) {
+      subTotalElement.textContent = `$${this.itemTotal.toFixed(2)};`
+    }
+
+    if (taxElement) {
+      taxElement.textContent = `$${this.tax.toFixed(2)}`;
+    }
+
+    if (shippingCostElement) {
+      shippingCostElement.textContent = `$${this.shipping.toFixed(2)}`;
+    }
+
+    if (orderTotalElement) {
+      orderTotalElement.textContent = `$${this.orderTotal.toFixed(2)}`;
+    }
+  }
 }
-
-function createOrderSummary() {
-  let cartItems = getLocalStorage("so-cart") || [];
-
-  const subTotalElement = document.getElementById("num-items");
-  const taxElement = document.getElementById("tax");
-  const shippingCostElement = document.getElementById("shipping");
-  const orderTotalElement = document.getElementById("orderTotal");
-
-  const subTotal = getSubtotal(cartItems)
-  const shippingCost = calculateShipping(cartItems.length)
-
-  // calculate subTotal
-  if (subTotalElement) {
-    subTotalElement.textContent = subTotal.toFixed(2);
-  }
-
-  // calculate tax
-  const tax = (subTotal * 0.06)
-  if (taxElement) {
-    taxElement.textContent = tax.toFixed(2);
-  }
-
-  // calculate shipping
-  if (shippingCostElement) {
-    shippingCostElement.textContent = shippingCost.toFixed(2)
-  }
-
-  // calculate final total
-  if (orderTotalElement) {
-    const orderTotal = subTotal + tax + shippingCost
-    orderTotalElement.textContent = orderTotal.toFixed(2);
-  }
-}
-
-createOrderSummary();
-
