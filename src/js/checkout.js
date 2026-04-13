@@ -17,5 +17,4 @@ document.forms["checkout"].addEventListener("submit", async (event) => {
     const response = await services.checkout(payload);
     // some minor confirmation logic
     alert(`Order placed! Your order ID is ${response.orderId}`);
-
 });

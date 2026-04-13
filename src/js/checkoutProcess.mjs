@@ -90,16 +90,20 @@ export default class CheckoutProcess {
   }
 
   async checkout() {
-    const formClass = document.forms["checkout"]
+    try {
+      const formClass = document.forms["checkout"]
+      const formJSON = formDataToJSON(formClass)
+    
+      formJSON.orderDate = new Date();
+      formJSON.orderTotal = this.orderTotal;
+      formJSON.tax = this.tax;
+      formJSON.shipping = this.shipping;
+      formJSON.items = packageItems(this.list);
+    
+      return formJSON;
+    } catch (err) {
+      throw new Error("FORM_PROCESSING_FAILED");
+    }
 
-    const formJSON = formDataToJSON(formClass)
-
-    formJSON.orderDate = new Date();
-    formJSON.orderTotal = this.orderTotal;
-    formJSON.tax = this.tax;
-    formJSON.shipping = this.shipping;
-    formJSON.items = packageItems(this.list);
-
-    return formJSON;
   }
 };
